@@ -30,4 +30,13 @@ base.js: $(SOURCES) trie.json trieUse.json trieIndic.json
 	rollup -c -m -i src/base.js -o base.js
 
 clean:
-	rm -f index.js base.js trie.json trieIndic.json trieUse.json src/opentype/shapers/trie.json src/opentype/shapers/trieUse.json src/opentype/shapers/use.json src/opentype/shapers/trieIndic.json src/opentype/shapers/indic.json
+	rm -f index.js                            \
+	      base.js                             \
+				trie.json                           \
+				trieIndic.json                      \
+				trieUse.json                        \
+				src/opentype/shapers/trie.json      \
+				src/opentype/shapers/trieUse.json   \
+				src/opentype/shapers/use.json       \
+				src/opentype/shapers/trieIndic.json \
+				src/opentype/shapers/indic.json
