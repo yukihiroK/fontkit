@@ -1,17 +1,28 @@
 import babel from 'rollup-plugin-babel';
 import localResolve from 'rollup-plugin-local-resolve';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
+import { uglify } from 'rollup-plugin-uglify';
+import { plugin as analyze } from 'rollup-plugin-analyzer';
 
 export default {
-  format: 'cjs',
+  input: 'es/index.js',
+  output: {
+    name: 'fontkit',
+    format: 'umd',
+  },
+  // external: ['brotli/decompress'],
   plugins: [
-    localResolve(),
-    json(),
-    babel({
-      babelrc: false,
-      presets: [['es2015', { modules: false, loose: true }]],
-      plugins: ['transform-decorators-legacy', 'transform-class-properties', 'transform-runtime'],
-      runtimeHelpers: true
-    })
-  ]
+    analyze(),
+    // localResolve(),
+    nodeResolve({
+      browser: true,
+    }),
+    commonjs(),
+    json({
+      indent: '',
+    }),
+    uglify(),
+  ],
 };
